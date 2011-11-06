@@ -13,9 +13,7 @@ public class Account {
 	}
 
 	public boolean isValid() {
-		char[] numbers = this.accountNumber.toCharArray();
-		int sum = countSum(numbers);
-		return sum % 11 == 0;
+		return countSum(accountNumberToCharArray()) % 11 == 0;
 	}
 
 	private int countSum(char[] numbers) {
@@ -26,6 +24,10 @@ public class Account {
 		return sum;
 	}
 
+	private char[] accountNumberToCharArray() {
+		return this.accountNumber.toCharArray();
+	}	
+	
 	private int charToDigit(char c) {
 		return Character.digit(c, 10);
 	}
