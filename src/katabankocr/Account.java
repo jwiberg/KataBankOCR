@@ -1,7 +1,7 @@
 package katabankocr;
 
 public class Account {
-	
+
 	private String accountNumber;
 
 	public Account(String accountNumber) {
@@ -10,6 +10,24 @@ public class Account {
 
 	public String getAccountNumber() {
 		return accountNumber;
+	}
+
+	public boolean isValid() {
+		char[] numbers = this.accountNumber.toCharArray();
+		int sum = countSum(numbers);
+		return sum % 11 == 0;
+	}
+
+	private int countSum(char[] numbers) {
+		int sum = 0;
+		for (int i = 1; i <= 9; i++) {
+			sum += charToDigit(numbers[numbers.length - i]) * i;
+		}
+		return sum;
+	}
+
+	private int charToDigit(char c) {
+		return Character.digit(c, 10);
 	}
 
 }
