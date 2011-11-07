@@ -1,3 +1,4 @@
+//CHECKSTYLE:OFF
 package katabankocr;
 
 import static org.junit.Assert.assertEquals;
@@ -8,98 +9,98 @@ import org.junit.Test;
 public class AccountFileParserTests {
 
 	@Test
-	public void parseZeros() {		 
+	public final void parseZeros() {		 
 		String file = ZEROS;
 		List<Account> accounts = parseFile(file);
 		assertEquals("000000000", accounts.get(0).getAccountNumber());
 	}
 	
 	@Test
-	public void parseOnes() {		 
+	public final void parseOnes() {		 
 		String file = ONES;
 		List<Account> accounts = parseFile(file);
 		assertEquals("111111111", accounts.get(0).getAccountNumber());
 	}	
 	
 	@Test
-	public void parseTwos() {
+	public final void parseTwos() {
 		String file = TWOS;
 		List<Account> accounts = parseFile(file);
 		assertEquals("222222222", accounts.get(0).getAccountNumber());		
 	}
 	
 	@Test
-	public void parseThrees() {
+	public final void parseThrees() {
 		String file = THREES;
 		List<Account> accounts = parseFile(file);
 		assertEquals("333333333", accounts.get(0).getAccountNumber());		
 	}
 	
 	@Test
-	public void parseFours() {
+	public final void parseFours() {
 		String file = FOURS;
 		List<Account> accounts = parseFile(file);
 		assertEquals("444444444", accounts.get(0).getAccountNumber());		
 	}
 	
 	@Test
-	public void parseFives() {
+	public final void parseFives() {
 		String file = FIVES;
 		List<Account> accounts = parseFile(file);
 		assertEquals("555555555", accounts.get(0).getAccountNumber());		
 	}
 	
 	@Test
-	public void parseSixs() {
+	public final void parseSixs() {
 		String file = SIXS;
 		List<Account> accounts = parseFile(file);
 		assertEquals("666666666", accounts.get(0).getAccountNumber());		
 	}	
 	
 	@Test
-	public void parseSevens() {
+	public final void parseSevens() {
 		String file = SEVENS;
 		List<Account> accounts = parseFile(file);
 		assertEquals("777777777", accounts.get(0).getAccountNumber());		
 	}
 	
 	@Test
-	public void parseEights() {
+	public final void parseEights() {
 		String file = EIGHTS;
 		List<Account> accounts = parseFile(file);
 		assertEquals("888888888", accounts.get(0).getAccountNumber());		
 	}
 	
 	@Test
-	public void parseNines() {
+	public final void parseNines() {
 		String file = NINES;
 		List<Account> accounts = parseFile(file);
 		assertEquals("999999999", accounts.get(0).getAccountNumber());		
 	}		
 	
 	@Test
-	public void parseOnesAndZeros() {
+	public final void parseOnesAndZeros() {
 		String file = ONES_AND_ZEROS;
 		List<Account> accounts = parseFile(file);
 		assertEquals("101010101", accounts.get(0).getAccountNumber());		
 	}	
 	
 	@Test
-	public void parseAllNumbers() {
+	public final void parseAllNumbers() {
 		String file = ALL_NUMBERS;
 		List<Account> accounts = parseFile(file);
 		assertEquals("123456789", accounts.get(0).getAccountNumber());
 	}
 	
 	@Test
-	public void parseTwoLines() {
+	public final void parseTwoLines() {
 		String file = ONES_AND_ZEROS + ALL_NUMBERS;
 		List<Account> accounts = parseFile(file);
 		assertEquals("101010101", accounts.get(0).getAccountNumber());
 		assertEquals("123456789", accounts.get(1).getAccountNumber());
 	}
 
-	private List<Account> parseFile(String file) {
+	private List<Account> parseFile(final String file) {
 		AccountFileParser parser = new AccountFileParser(file);
 		List<Account> accounts = parser.parse();
 		return accounts;
@@ -163,5 +164,6 @@ public class AccountFileParserTests {
 	private static final String ALL_NUMBERS = "    _  _     _  _  _  _  _ \n"
 											+ "  | _| _||_||_ |_   ||_||_|\n"
 											+ "  ||_  _|  | _||_|  ||_| _|\n"
-											+ "                           \n";	
+											+ "                           \n";
+//CHECSTYLE:ON
 }

@@ -1,6 +1,6 @@
 package katabankocr;
 
-public class AccountFileReader {
+public final class AccountFileReader {
 	public String readToString() {
 		throw new UnsupportedOperationException("To be implemented...");
 	}

@@ -3,9 +3,10 @@ package katabankocr;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountFileParser {
+public final class AccountFileParser {
 
-	private String[] lines;
+	private static final int FILE_CHAR_WIDTH = 3;
+	private static final int FILE_CHAR_HEIGHT = 4;
 
 	private static final String ZERO = " _ " + "| |" + "|_|";
 	private static final String ONE = "   " + "  |" + "  |";
@@ -18,6 +19,8 @@ public class AccountFileParser {
 	private static final String EIGHT = " _ " + "|_|" + "|_|";
 	private static final String NINE = " _ " + "|_|" + " _|";
 
+	private String[] lines;
+
 	public AccountFileParser(String file) {
 		this.lines = file.split("\n");
 	}
@@ -25,24 +28,25 @@ public class AccountFileParser {
 	public List<Account> parse() {
 		List<Account> accounts = new ArrayList<Account>();
 
-		for (int i = 0; i < lines.length; i = i + 4) {
-			String accountNumber = parseAccountNumber(lines, i);
+		for (int i = 0; i < lines.length; i = i + FILE_CHAR_HEIGHT) {
+			String accountNumber = parseAccountNumber(i);
 			accounts.add(new Account(accountNumber));
 		}
 
 		return accounts;
 	}
 
-	private String parseAccountNumber(String[] lines, int fileLineNmber) {
-		String accountNumber = "";
-		for (int characterNumber = 1; characterNumber < 10; characterNumber++) {
+	private String parseAccountNumber(int fileLineNmber) {
+		StringBuilder accountNumber = new StringBuilder();
+		for (int characterNumber = 1; characterNumber <= Account.ACCOUNT_NUMBER_LENGHT; characterNumber++) {
 			String character = getCharacter(fileLineNmber, characterNumber);
 			int number = fileNumberCharacterToNumber(character);
-			accountNumber += number;
+			accountNumber.append(number);
 		}
-		return accountNumber;
+		return accountNumber.toString();
 	}
 
+	// CHECKSTYLE:OFF
 	private int fileNumberCharacterToNumber(String character) {
 		switch (character) {
 		case ZERO:
@@ -71,20 +75,21 @@ public class AccountFileParser {
 		}
 	}
 
+	// CHECKSTYLE:ON
+
 	private String getCharacter(int fileLineNumber, int characterNumber) {
 		String line1 = lines[fileLineNumber];
 		String line2 = lines[fileLineNumber + 1];
 		String line3 = lines[fileLineNumber + 2];
-		int startInx = (characterNumber - 1) * 3;
-		int endIndex = startInx + 3;
+		int startInx = (characterNumber - 1) * FILE_CHAR_WIDTH;
+		int endIndex = startInx + FILE_CHAR_WIDTH;
 		String character = line1.substring(startInx, endIndex)
 				+ line2.substring(startInx, endIndex)
 				+ line3.substring(startInx, endIndex);
 		return character;
 	}
 
-	public class AccountFileParserException extends RuntimeException {
-
+	private class AccountFileParserException extends RuntimeException {
 		private static final long serialVersionUID = 1L;
 
 		public AccountFileParserException(String message) {

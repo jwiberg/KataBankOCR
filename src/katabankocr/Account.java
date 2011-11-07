@@ -1,6 +1,8 @@
 package katabankocr;
 
-public class Account {
+public final class Account {
+	
+	public static final int ACCOUNT_NUMBER_LENGHT = 9;
 
 	private String accountNumber;
 
@@ -9,12 +11,14 @@ public class Account {
 	}
 
 	public boolean isValid() {
+		//CHECKSTYLE:OFF
 		return countSum(accountNumberToCharArray()) % 11 == 0;
+		//CHECKSTYLE:ON
 	}
 
 	private int countSum(char[] numbers) {
 		int sum = 0;
-		for (int i = 1; i <= 9; i++) {
+		for (int i = 1; i <= ACCOUNT_NUMBER_LENGHT; i++) {
 			sum += charToDigit(numbers[numbers.length - i]) * i;
 		}
 		return sum;
@@ -25,7 +29,9 @@ public class Account {
 	}	
 	
 	private int charToDigit(char c) {
+		//CHECKSTYLE:OFF
 		return Character.digit(c, 10);
+		//CHECKSTYLE:ON
 	}
 	
 	public String getAccountNumber() {
