@@ -8,10 +8,6 @@ public class Account {
 		this.accountNumber = accountNumber;
 	}
 
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-
 	public boolean isValid() {
 		return countSum(accountNumberToCharArray()) % 11 == 0;
 	}
@@ -31,5 +27,9 @@ public class Account {
 	private int charToDigit(char c) {
 		return Character.digit(c, 10);
 	}
+	
+	public String getAccountNumber() {
+		return accountNumber;
+	}	
 
 }

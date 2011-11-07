@@ -37,42 +37,38 @@ public class AccountFileParser {
 		String accountNumber = "";
 		for (int characterNumber = 1; characterNumber < 10; characterNumber++) {
 			String character = getCharacter(fileLineNmber, characterNumber);
-			switch (character) {
-			case ZERO:
-				accountNumber += 0;
-				break;
-			case ONE:
-				accountNumber += 1;
-				break;
-			case TWO:
-				accountNumber += 2;
-				break;
-			case THREE:
-				accountNumber += 3;
-				break;
-			case FOUR:
-				accountNumber += 4;
-				break;
-			case FIVE:
-				accountNumber += 5;
-				break;
-			case SIX:
-				accountNumber += 6;
-				break;
-			case SEVEN:
-				accountNumber += 7;
-				break;
-			case EIGHT:
-				accountNumber += 8;
-				break;
-			case NINE:
-				accountNumber += 9;
-				break;
-			default:
-				break;
-			}
+			int number = fileNumberCharacterToNumber(character);
+			accountNumber += number;
 		}
 		return accountNumber;
+	}
+
+	private int fileNumberCharacterToNumber(String character) {
+		switch (character) {
+		case ZERO:
+			return 0;
+		case ONE:
+			return 1;
+		case TWO:
+			return 2;
+		case THREE:
+			return 3;
+		case FOUR:
+			return 4;
+		case FIVE:
+			return 5;
+		case SIX:
+			return 6;
+		case SEVEN:
+			return 7;
+		case EIGHT:
+			return 8;
+		case NINE:
+			return 9;
+		default:
+			throw new AccountFileParserException("Not parseable character: "
+					+ character);
+		}
 	}
 
 	private String getCharacter(int fileLineNumber, int characterNumber) {
@@ -87,4 +83,12 @@ public class AccountFileParser {
 		return character;
 	}
 
+	public class AccountFileParserException extends RuntimeException {
+
+		private static final long serialVersionUID = 1L;
+
+		public AccountFileParserException(String message) {
+			super(message);
+		}
+	}
 }
