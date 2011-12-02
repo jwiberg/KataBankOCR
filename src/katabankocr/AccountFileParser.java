@@ -41,7 +41,12 @@ public final class AccountFileParser {
 		for (int characterNumber = 1; characterNumber <= Account.ACCOUNT_NUMBER_LENGHT; characterNumber++) {
 			String character = getCharacter(fileLineNmber, characterNumber);
 			int number = fileNumberCharacterToNumber(character);
-			accountNumber.append(number);
+			if (number < 0) {
+				accountNumber.append("?");
+			} else {
+				accountNumber.append(number);
+			}
+
 		}
 		return accountNumber.toString();
 	}
@@ -70,8 +75,7 @@ public final class AccountFileParser {
 		case NINE:
 			return 9;
 		default:
-			throw new AccountFileParserException("Not parseable character: "
-					+ character);
+			return -1;
 		}
 	}
 
@@ -89,11 +93,4 @@ public final class AccountFileParser {
 		return character;
 	}
 
-	private class AccountFileParserException extends RuntimeException {
-		private static final long serialVersionUID = 1L;
-
-		public AccountFileParserException(String message) {
-			super(message);
-		}
-	}
 }

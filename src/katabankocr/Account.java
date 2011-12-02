@@ -12,8 +12,15 @@ public final class Account {
 
 	public boolean isValid() {
 		//CHECKSTYLE:OFF
+		if(hasInvalidCharacters()) {
+			return false;
+		}
 		return countSum(accountNumberToCharArray()) % 11 == 0;
 		//CHECKSTYLE:ON
+	}
+
+	public boolean hasInvalidCharacters() {
+		return accountNumber.indexOf("?") > -1;
 	}
 
 	private int countSum(char[] numbers) {

@@ -18,4 +18,22 @@ public final class AccountTests {
 		assertTrue(!account.isValid());		
 	}
 	
+	@Test
+	public void shouldBeInvalidAlso() {
+		Account account = new Account("664371495");
+		assertTrue(!account.isValid());
+	}
+	
+	@Test
+	public void shouldBeInvalidAlsoWithQuestionMarks() {
+		Account account = new Account("6??666666");
+		assertTrue(!account.isValid());		
+	}
+	
+	@Test
+	public void hasInvalidCharacters() {
+		Account account = new Account("6??666666");
+		assertTrue(account.hasInvalidCharacters());				
+	}
+	
 }
