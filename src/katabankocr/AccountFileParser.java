@@ -27,12 +27,10 @@ public final class AccountFileParser {
 
 	public List<Account> parse() {
 		List<Account> accounts = new ArrayList<Account>();
-
 		for (int i = 0; i < lines.length; i = i + FILE_CHAR_HEIGHT) {
 			String accountNumber = parseAccountNumber(i);
 			accounts.add(new Account(accountNumber));
 		}
-
 		return accounts;
 	}
 
@@ -40,17 +38,32 @@ public final class AccountFileParser {
 		StringBuilder accountNumber = new StringBuilder();
 		for (int characterNumber = 1; characterNumber <= Account.ACCOUNT_NUMBER_LENGHT; characterNumber++) {
 			String character = getCharacter(fileLineNmber, characterNumber);
-			int number = fileNumberCharacterToNumber(character);
-			if (number < 0) {
-				accountNumber.append("?");
-			} else {
-				accountNumber.append(number);
-			}
-
+			appendCharacter(accountNumber, character);
 		}
 		return accountNumber.toString();
 	}
 
+	private void appendCharacter(StringBuilder accountNumber, String character) {
+		int number = fileNumberCharacterToNumber(character);
+		if (number < 0) {
+			accountNumber.append("?");
+		} else {
+			accountNumber.append(number);
+		}
+	}
+
+	private String getCharacter(int fileLineNumber, int characterNumber) {
+		String line1 = lines[fileLineNumber];
+		String line2 = lines[fileLineNumber + 1];
+		String line3 = lines[fileLineNumber + 2];
+		int startInx = (characterNumber - 1) * FILE_CHAR_WIDTH;
+		int endIndex = startInx + FILE_CHAR_WIDTH;
+		String character = line1.substring(startInx, endIndex)
+				+ line2.substring(startInx, endIndex)
+				+ line3.substring(startInx, endIndex);
+		return character;
+	}
+	
 	// CHECKSTYLE:OFF
 	private int fileNumberCharacterToNumber(String character) {
 		switch (character) {
@@ -78,19 +91,6 @@ public final class AccountFileParser {
 			return -1;
 		}
 	}
-
-	// CHECKSTYLE:ON
-
-	private String getCharacter(int fileLineNumber, int characterNumber) {
-		String line1 = lines[fileLineNumber];
-		String line2 = lines[fileLineNumber + 1];
-		String line3 = lines[fileLineNumber + 2];
-		int startInx = (characterNumber - 1) * FILE_CHAR_WIDTH;
-		int endIndex = startInx + FILE_CHAR_WIDTH;
-		String character = line1.substring(startInx, endIndex)
-				+ line2.substring(startInx, endIndex)
-				+ line3.substring(startInx, endIndex);
-		return character;
-	}
+	// CHECKSTYLE:ON	
 
 }

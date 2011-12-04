@@ -33,7 +33,7 @@ public final class AccountTests {
 	@Test
 	public void hasInvalidCharacters() {
 		Account account = new Account("6??666666");
-		assertTrue(account.hasInvalidCharacters());				
+		assertTrue(account.hasIllegalCharacters());				
 	}
 	
 }
