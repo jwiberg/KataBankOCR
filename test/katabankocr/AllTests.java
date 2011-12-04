@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ AccountFileParserTests.class, AccountTests.class,
-		LogFileWriterTests.class })
+		LogWriterTests.class })
 public class AllTests {
 
 }
