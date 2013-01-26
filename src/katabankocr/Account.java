@@ -1,10 +1,10 @@
 package katabankocr;
 
-public final class Account {
+final class Account {
 	
 	public static final int ACCOUNT_NUMBER_LENGHT = 9;
 
-	private String accountNumber;
+	private final String accountNumber;
 
 	public Account(String accountNumber) {
 		this.accountNumber = accountNumber;
@@ -20,7 +20,7 @@ public final class Account {
 	}
 
 	public boolean hasIllegalCharacters() {
-		return accountNumber.indexOf("?") > -1;
+		return accountNumber.contains("?");
 	}
 
 	private int countSum(char[] numbers) {

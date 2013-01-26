@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
 
-public final class LogWriter {
+final class LogWriter {
 
 	private Writer writer;
 

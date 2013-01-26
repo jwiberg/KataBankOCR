@@ -30,7 +30,7 @@ public final class LogWriterTests {
 
 	@Test
 	public void logValidAccount() throws Exception {
-		List<Account> accounts = new ArrayList<Account>();
+		List<Account> accounts = new ArrayList<>();
 		accounts.add(new Account(VALID_ACCOUNT_NUMBER_457508000));
 		this.logFileWriter.write(accounts);
 		verify(this.fileWriter, times(1)).write(
@@ -39,7 +39,7 @@ public final class LogWriterTests {
 
 	@Test
 	public void logInvalidAccout() throws Exception {
-		List<Account> accounts = new ArrayList<Account>();
+		List<Account> accounts = new ArrayList<>();
 		accounts.add(new Account(INVALID_ACCOUNT_NUMBER_664371495));
 		this.logFileWriter.write(accounts);
 		verify(this.fileWriter, times(1)).write(
@@ -48,7 +48,7 @@ public final class LogWriterTests {
 
 	@Test
 	public void logAccountWithIllegalCharacters() throws Exception {
-		List<Account> accounts = new ArrayList<Account>();
+		List<Account> accounts = new ArrayList<>();
 		accounts.add(new Account(ILLEGALCHARACTER_ACCOUNT_NUMBER_66XX71495));
 		this.logFileWriter.write(accounts);
 		verify(this.fileWriter, times(1)).write(

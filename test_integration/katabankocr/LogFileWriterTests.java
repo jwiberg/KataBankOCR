@@ -27,7 +27,7 @@ public class LogFileWriterTests {
 	public void writeSimpleFile() throws Exception {
 		try (FileWriter fr = new FileWriter(TEST_FILE_NAME)) {
 			Account account = new Account("123456789");
-			List<Account> accounts = new ArrayList<Account>();
+			List<Account> accounts = new ArrayList<>();
 			accounts.add(account);
 			LogWriter logWriter = new LogWriter();
 			logWriter.setFileWriter(fr);
@@ -44,7 +44,7 @@ public class LogFileWriterTests {
 			Account accountValid = new Account("123456789");
 			Account accountInvalid = new Account("132453455");
 			Account accountIllegalCharaters = new Account("13??53455");
-			List<Account> accounts = new ArrayList<Account>();
+			List<Account> accounts = new ArrayList<>();
 			accounts.add(accountValid);
 			accounts.add(accountInvalid);
 			accounts.add(accountIllegalCharaters);

@@ -110,8 +110,7 @@ public class AccountFileParserTests {
 	
 	private List<Account> parseFile(final String file) {
 		AccountFileParser parser = new AccountFileParser(file);
-		List<Account> accounts = parser.parse();
-		return accounts;
+		return parser.parse();
 	}
 	
 	private static final String INVALID_ZEROS =   " _  _  _  _  _  _  _  _  _ \n"
